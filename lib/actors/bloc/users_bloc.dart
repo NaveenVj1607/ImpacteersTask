@@ -9,27 +9,32 @@ part 'user_state.dart';
 
 class UsersBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
-  UsersBloc(this.userRepository) : super(UserInitial());
+  UsersBloc(this.userRepository) : super(UserInitial()) {
+    on<FetchUserListEvent>(_fetchUserList);
+    on<FetchUserDetailEvent>(_fetchUserDetail);
+  }
 
-  Stream<UserState> mapEventToState(UserEvent event) async* {
-    if (event is FetchUserListEvent) {
-      yield UserListLoadingState();
+  Future<void> _fetchUserList(
+      FetchUserListEvent event, Emitter<UserState> emit) async {
+    emit(UserListLoadingState());
 
-      try {
-        final userListResponse = await userRepository.getUserList(event.page);
-        yield UserListLoadSuccessState(userListResponse: userListResponse);
-      } catch (e) {
-        yield UserListLoadFailureState();
-      }
-    } else if (event is FetchUserDetailEvent) {
-      yield UserListLoadingState();
+    try {
+      final userListResponse = await userRepository.getUserList(event.page);
+      emit(UserListLoadSuccessState(userListResponse: userListResponse));
+    } catch (e) {
+      emit(UserListLoadFailureState());
+    }
+  }
 
-      try {
-        final user = await userRepository.getUser(event.id);
-        yield UserDetailLoadSuccessState(user: user);
-      } catch (e) {
-        yield UserDetailLoadFailureState();
-      }
+  Future<void> _fetchUserDetail(
+      FetchUserDetailEvent event, Emitter<UserState> emit) async {
+    emit(UserListLoadingState());
+
+    try {
+      final user = await userRepository.getUser(event.id);
+      emit(UserDetailLoadSuccessState(user: user));
+    } catch (e) {
+      emit(UserDetailLoadFailureState());
     }
   }
 }

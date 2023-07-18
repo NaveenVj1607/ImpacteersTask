@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_actors_app/actors/view/user_list_screen.dart';
 
 void main() {
   runApp(const MovieActorsApp());
@@ -12,7 +13,7 @@ class MovieActorsApp extends StatelessWidget {
     return MaterialApp(
       title: 'Movie Actors',
       theme: ThemeData(fontFamily: 'SF-Pro'),
-      home: Container(),
+      home: const UserListScreen(),
     );
   }
 }
