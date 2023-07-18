@@ -11,9 +11,7 @@ class MovieActorsApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Movie Actors',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(fontFamily: 'SF-Pro'),
       home: Container(),
     );
   }

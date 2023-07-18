@@ -32,3 +32,11 @@ Runner/GeneratedPluginRegistrant.*
 !default.mode2v3
 !default.pbxuser
 !default.perspectivev3
+.flutter-plugins-dependencies
+.dart_tool/package_config.json
+.dart_tool/package_config.json
+.dart_tool/package_config_subset
+.flutter-plugins
+.idea/libraries/Dart_Packages.xml
+.idea/libraries/Flutter_Plugins.xml
+movie_actors_app.iml
