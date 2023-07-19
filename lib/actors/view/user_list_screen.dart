@@ -131,7 +131,9 @@ class RetryConnection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text("Failed to load user list"),
+        const Text(
+          "Failed to load user list",
+        ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20),
           child: ElevatedButton(

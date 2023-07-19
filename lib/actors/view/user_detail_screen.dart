@@ -21,7 +21,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 700),
     );
 
     _bounceAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -73,7 +73,7 @@ class _UserDetailScreenState extends State<UserDetailScreen>
               animation: _bounceAnimation,
               builder: (context, child) {
                 return Transform.scale(
-                  scale: 0.8 + _bounceAnimation.value * 0.15,
+                  scale: _bounceAnimation.value,
                   child: child,
                 );
               },

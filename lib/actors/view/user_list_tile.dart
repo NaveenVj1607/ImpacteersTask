@@ -22,8 +22,12 @@ class UserListTile extends StatelessWidget {
             ),
           ),
         ),
-        title: Text('${user.firstName} ${user.lastName}'),
-        subtitle: Text(user.email),
+        title: Text(
+          '${user.firstName} ${user.lastName}',
+        ),
+        subtitle: Text(
+          user.email,
+        ),
         onTap: () {
           Navigator.push(
             context,
