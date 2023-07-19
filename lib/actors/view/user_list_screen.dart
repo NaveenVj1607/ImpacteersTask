@@ -1,10 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_actors_app/actors/bloc/users_bloc.dart';
 import 'package:movie_actors_app/actors/models/user_list_response.dart';
 import 'package:movie_actors_app/actors/repository/user_repository.dart';
-import 'package:movie_actors_app/actors/view/user_detail_screen.dart';
+import 'package:movie_actors_app/actors/view/user_list_tile.dart';
 
 class UserListScreen extends StatefulWidget {
   final UsersBloc? usersBloc;
@@ -62,18 +61,14 @@ class _UserListScreenState extends State<UserListScreen> {
           if (state is UserListLoadingState) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is UserListLoadSuccessState) {
-            if (latestPage == state.userListResponse.page) {
-              latestPage++;
-              latestUserResponse = state.userListResponse;
-              users.addAll(state.userListResponse.users);
-            }
-
+            addUsers(state.userListResponse);
             return ListView.builder(
               controller: _scrollController,
               itemCount: latestPage > state.userListResponse.totalPages
                   ? users.length
                   : users.length + 1,
               itemBuilder: (context, index) {
+                // NOTE: This is additional loader at the bottom when there is a next page for infinite scrolling
                 if (index == users.length) {
                   if (state.userListResponse.page > 1) {
                     return const ListTile(
@@ -85,6 +80,7 @@ class _UserListScreenState extends State<UserListScreen> {
                       ),
                     );
                   } else {
+                    // NOTE: This widget is implemented only when the initial page is just 6 elements loaded since scroll doesn't work for least elements added a additional load more button
                     return Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(
@@ -102,64 +98,48 @@ class _UserListScreenState extends State<UserListScreen> {
               },
             );
           } else if (state is UserListLoadFailureState) {
-            return Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text("Failed to load user list"),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      users = [];
-                      _usersBloc.add(const FetchUserListEvent(page: 1));
-                    },
-                    child: const Text("Retry"),
-                  ),
-                )
-              ],
-            ));
+            return RetryConnection(
+              onPressed: () {
+                users = [];
+                _usersBloc.add(const FetchUserListEvent(page: 1));
+              },
+            );
           }
           return const SizedBox.shrink();
         },
       ),
     );
   }
+
+  void addUsers(UserListResponse userListResponse) {
+    if (latestPage == userListResponse.page) {
+      latestPage++;
+      latestUserResponse = userListResponse;
+      users.addAll(userListResponse.users);
+    }
+  }
 }
 
-class UserListTile extends StatelessWidget {
-  final User user;
-  const UserListTile({required this.user, super.key});
+class RetryConnection extends StatelessWidget {
+  final void Function() onPressed;
+  const RetryConnection({required this.onPressed, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: ListTile(
-        leading: Hero(
-          tag: "avatar_${user.id.toString()}",
-          child: CircleAvatar(
-            backgroundImage: CachedNetworkImageProvider(
-              user.avatar,
-            ),
+    return Center(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const Text("Failed to load user list"),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          child: ElevatedButton(
+            onPressed: onPressed,
+            child: const Text("Retry"),
           ),
-        ),
-        title: Text('${user.firstName} ${user.lastName}'),
-        subtitle: Text(user.email),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => UserDetailScreen(
-                user: user,
-              ),
-            ),
-          );
-        },
-      ),
-    );
+        )
+      ],
+    ));
   }
 }

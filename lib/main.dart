@@ -16,8 +16,8 @@ class MovieActorsApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'SF-Pro',
-        primarySwatch: createMaterialColor(Color(0xffec4400)),
-        primaryColor: Color(0xffec4400),
+        primarySwatch: createMaterialColor(const Color(0xffec4400)),
+        primaryColor: const Color(0xffec4400),
       ),
       home: const UserListScreen(),
     );

@@ -16,7 +16,9 @@ class UsersBloc extends Bloc<UserEvent, UserState> {
 
   Future<void> _fetchUserList(
       FetchUserListEvent event, Emitter<UserState> emit) async {
-    emit(UserListLoadingState());
+    if (event.page == 1) {
+      emit(UserListLoadingState());
+    }
 
     try {
       final userListResponse = await userRepository.getUserList(event.page);

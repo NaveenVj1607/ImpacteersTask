@@ -29,6 +29,7 @@ class UserRepository {
     }
   }
 
+// NOTE: Mostly this is not used since we are getting the same details from the list
   Future<User> getUser(int userId) async {
     if (await connectivity.checkConnectivity() == ConnectivityResult.none) {
       throw Exception("No internet connection,please try again later.");
