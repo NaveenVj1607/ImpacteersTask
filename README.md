@@ -25,6 +25,8 @@ flutter run -t lib/main.dart
 
 In VsCode we also have a buildConfiguration to run the build
 
+For iOS build you might require a apple account to get the provisioning profile and run it on simulator or an iPhone
+
 ## Running tests
 
 ### To run unit tests

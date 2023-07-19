@@ -392,48 +392,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "shared_preferences",
-      "rootUri": "file:///Users/naveenvj/.pub-cache/hosted/pub.dev/shared_preferences-2.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "shared_preferences_android",
-      "rootUri": "file:///Users/naveenvj/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "shared_preferences_foundation",
-      "rootUri": "file:///Users/naveenvj/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "shared_preferences_linux",
-      "rootUri": "file:///Users/naveenvj/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.3.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "shared_preferences_platform_interface",
-      "rootUri": "file:///Users/naveenvj/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.3.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "shared_preferences_web",
-      "rootUri": "file:///Users/naveenvj/.pub-cache/hosted/pub.dev/shared_preferences_web-2.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
-      "name": "shared_preferences_windows",
-      "rootUri": "file:///Users/naveenvj/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.3.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
       "name": "shelf",
       "rootUri": "file:///Users/naveenvj/.pub-cache/hosted/pub.dev/shelf-1.4.1",
       "packageUri": "lib/",
@@ -614,7 +572,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-07-19T04:38:27.982473Z",
+  "generated": "2023-07-19T06:09:25.707158Z",
   "generator": "pub",
   "generatorVersion": "3.0.6"
 }

@@ -88,54 +88,36 @@ class _UserDetailScreenState extends State<UserDetailScreen>
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CircleAvatar(
-                                backgroundColor: Theme.of(context).primaryColor,
-                                child: const Icon(
-                                  Icons.person,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "${widget.user.firstName} ${widget.user.lastName}",
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                          ],
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Theme.of(context).primaryColor,
+                          child: const Icon(
+                            Icons.person,
+                            color: Colors.white,
+                          ),
+                        ),
+                        title: const Text(
+                          'Username',
+                        ),
+                        subtitle: Text(
+                          "${widget.user.firstName} ${widget.user.lastName}",
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: CircleAvatar(
-                                backgroundColor: Theme.of(context).primaryColor,
-                                child: const Icon(
-                                  Icons.email,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              widget.user.email,
-                              style: const TextStyle(fontSize: 16),
-                            ),
-                          ],
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Theme.of(context).primaryColor,
+                          child: const Icon(
+                            Icons.email,
+                            color: Colors.white,
+                          ),
+                        ),
+                        title: const Text(
+                          'Email',
+                        ),
+                        subtitle: Text(
+                          widget.user.email,
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ),
                     ],
