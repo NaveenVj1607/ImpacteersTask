@@ -18,6 +18,8 @@ Before starting, make sure you have the following prerequisites installed on you
 ## Run in debug mode
 
 ```
+flutter pub get
+
 flutter run -t lib/main.dart
 ```
 
