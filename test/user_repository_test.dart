@@ -7,7 +7,7 @@ import 'package:movie_actors_app/actors/models/user_list_response.dart';
 import 'package:movie_actors_app/actors/repository/user_repository.dart';
 
 var sampleResponse = {
-  "page": 2,
+  "page": 1,
   "per_page": 6,
   "total": 12,
   "total_pages": 2,
